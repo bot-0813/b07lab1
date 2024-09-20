@@ -1,0 +1,51 @@
+
+public class Polynomial{
+    private double coeff[]; 
+   
+Polynomial(){
+    coeff = new double[]{0};
+   }
+   
+Polynomial(double arr1[]){
+       coeff = new double[arr1.length];
+       for(int i = 0; i < arr1.length; i++){
+          coeff[i] = arr1[i];
+        }
+   }
+   
+Polynomial add(Polynomial p1){
+       int new_length = 0;
+       if(this.coeff.length > p1.coeff.length){
+           new_length = this.coeff.length;
+          }
+       else {
+         new_length = p1.coeff.length;
+         }
+       double result[] = new double[new_length];
+       for(int i = 0;i < new_length; i++){
+          if( i <= this.coeff.length-1 && i <= p1.coeff.length-1)
+              result[i] = this.coeff[i] + p1.coeff[i];
+          else if( i >= this.coeff.length)
+              result[i] = p1.coeff[i];
+          else
+              result[i] = this.coeff[i];
+       }
+       
+       return new Polynomial(result);
+}
+
+
+double evaluate(double x){
+    double sum = 0;
+    for(int i = 0; i < this.coeff.length;i++){
+    sum += (this.coeff[i]) * Math.pow(x,i); 
+    }
+  return sum;
+}
+
+boolean hasRoot(double x){
+   return evaluate(x)==0;
+}
+
+}
+
