@@ -3,7 +3,13 @@ public class Polynomial{
     
     public double[] coeff; 
     public int[] expo;
-      
+
+Polynomial(){
+       coeff = new double[]{0}; 
+    expo = new int[]{0};
+
+}
+
 Polynomial(double arr1[], int arr2[]){
      ArrayList<Double> coefflist = new ArrayList<>();
      ArrayList<Integer> expolist = new ArrayList<>();
@@ -31,7 +37,7 @@ Polynomial add(Polynomial p1){
        int j = 0;
       for(int x:p1.expo){
                   
-         if(is_there(this.expo,x) == true){
+         if(is_there(this.expo,x,this.expo.length) == true){
              int k = index(this.expo, x);
              if( k != -1){
                result[i] = p1.coeff[j] + this.coeff[k];
@@ -57,14 +63,14 @@ Polynomial add(Polynomial p1){
       }
 
       return new Polynomial(result,result_2);
-
+}
 
 
 
 double evaluate(double x){
     double sum = 0;
     for(int i = 0; i < this.coeff.length;i++){
-    sum += (this.coeff[i] * Math.pow(x,this.expo[i]); 
+    sum += (this.coeff[i] * Math.pow(x,this.expo[i])); 
     }
   return sum;
 }
@@ -134,9 +140,9 @@ return new Polynomial(result_3, result_4);
 
 
 Polynomial(File input){
-  Scanner s = new Scanner(file);
+  Scanner s = new Scanner(input);
  while(s.hasNextLine()){
-  String line = s.nextline();
+  String line = s.nextLine();
   String[] data = line.split("(?=[+-])");
      int length = data.length;
      double[] coeff = new double[length];
@@ -157,6 +163,7 @@ Polynomial(File input){
          }
         i++;
     }
+  }
 }
 
 void saveToFile(String name){
@@ -179,9 +186,7 @@ void saveToFile(String name){
 }
 
 
-
-
-
+}
 
 
 
